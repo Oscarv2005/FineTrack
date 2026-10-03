@@ -1,7 +1,4 @@
-
-
-CREATE DATABASE IF NOT EXISTS fintrack;
-USE fintrack;
+USE defaultdb;
 
 CREATE TABLE IF NOT EXISTS transactions (
   id INT AUTO_INCREMENT PRIMARY KEY,
