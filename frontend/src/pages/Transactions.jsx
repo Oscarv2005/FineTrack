@@ -25,7 +25,7 @@ export default function Transactions() {
   }, [loadTransactions]);
 
   const handleDelete = async (id) => {
-    // Remove it from view immediately; put it back if the delete fails
+    
     setTransactions((prev) => prev.filter((t) => t.id !== id));
     try {
       await deleteTransaction(id);
