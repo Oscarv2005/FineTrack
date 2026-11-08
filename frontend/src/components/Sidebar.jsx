@@ -21,7 +21,6 @@ export default function Sidebar({
 }) {
   const [active, setActive] = useState(activeItem);
 
-  // Keep internal state in sync if the parent ever changes activeItem itself
   useEffect(() => {
     setActive(activeItem);
   }, [activeItem]);
@@ -42,7 +41,6 @@ export default function Sidebar({
           <span className="sidebar-brand-name">FinTrack</span>
         </div>
 
-        {/* Nav */}
         <nav className="sidebar-nav">
           {NAV_ITEMS.map(({ id, label, icon: Icon }) => {
             const isActive = active === id;
@@ -60,8 +58,7 @@ export default function Sidebar({
           })}
         </nav>
       </div>
-
-      {/* Settings pinned to bottom */}
+      
       <div className="sidebar-footer">
         <button
           onClick={() => handleClick("settings")}
