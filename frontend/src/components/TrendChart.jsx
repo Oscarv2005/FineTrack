@@ -92,7 +92,6 @@ export default function TrendChart({ title = "Savings trend", data = [] }) {
               />
             )}
 
-            {/* Invisible hit-zones, one per point, wider than the visible dot for easy hover */}
             {points.map((p, i) => (
               <rect
                 key={i}
