@@ -18,7 +18,6 @@ const compact = (n) =>
 
 const inrM = (n) => `₹${Math.round(n).toLocaleString("en-IN")}`;
 
-/** groups: [{ key: "2026-11", income, expense }], newest first */
 function MonthlyChart({ groups = [] }) {
   const [hover, setHover] = useState(null);
 
