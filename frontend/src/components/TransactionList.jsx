@@ -1,10 +1,6 @@
 import React from "react";
 
-/**
- * onDelete is optional - pass it to show a delete button per row
- * (used on the Transactions page). Omit it for read-only views
- * like the Dashboard's "Recent transactions" preview.
- */
+
 export default function TransactionList({ transactions = [], onDelete }) {
   if (transactions.length === 0) {
     return <p className="empty-state">No transactions yet.</p>;
