@@ -236,6 +236,15 @@ def update_goal(goal_id):
         return jsonify({"error": "Goal not found"}), 404
     return jsonify({"message": "Updated"}), 200
 
+@app.route("/api/health/db")
+def health_db():
+    try:
+        conn = get_connection()
+        conn.close()
+        return jsonify({"db": "ok"})
+    except Exception as e:
+        return jsonify({"db": "error", "detail": str(e)}), 500
+
 
 @app.route("/api/goals/<int:goal_id>", methods=["DELETE"])
 def delete_goal(goal_id):
@@ -246,6 +255,8 @@ def delete_goal(goal_id):
     deleted = cur.rowcount
     cur.close()
     conn.close()
+
+    
 
     if deleted == 0:
         return jsonify({"error": "Goal not found"}), 404
