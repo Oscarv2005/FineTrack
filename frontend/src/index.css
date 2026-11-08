@@ -541,3 +541,33 @@ button, input, select { font-family: inherit; }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
 }
+
+.dashboard-wrapper { margin-inline: auto; }
+
+.dashboard-date { color: var(--ink-2); font-size: 14.5px; font-weight: 500; }
+
+.card-footer { margin-top: 8px; display: flex; flex-direction: column; gap: 14px; }
+.savings-note { margin: 0; color: rgba(255, 255, 255, 0.82); font-size: 15px; }
+
+.spend-bar { display: flex; flex-direction: column; gap: 8px; }
+.spend-track { height: 8px; border-radius: 999px; background: rgba(255, 255, 255, 0.14); overflow: hidden; }
+.spend-fill { height: 100%; border-radius: 999px; background: var(--marigold); transition: width 0.3s ease; }
+.spend-label { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; color: rgba(255, 255, 255, 0.62); }
+
+.section-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.section-header-row .section-header { margin-bottom: 0; }
+
+.link-button {
+  background: none;
+  border: none;
+  color: var(--ink-2);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+.link-button:hover { color: var(--ink); background: var(--sunk); }
+
+.transaction-main { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.transaction-date { color: var(--ink-3); font-size: 12.5px; }
