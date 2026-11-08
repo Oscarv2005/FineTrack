@@ -4,10 +4,7 @@ const WIDTH = 500;
 const HEIGHT = 100;
 const PADDING = 10;
 
-/**
- * data: array of numbers, oldest first. Shows an empty state
- * when there's nothing to plot yet - no fake data ever shown.
- */
+
 export default function TrendChart({ title = "Savings trend", data = [] }) {
   const [hoverIndex, setHoverIndex] = useState(null);
 
@@ -37,6 +34,15 @@ export default function TrendChart({ title = "Savings trend", data = [] }) {
     return { linePath: line, areaPath: area, points: pts, stepX: step };
   }, [data]);
 
+  const handleTouch = (e) => {
+    if (!points.length) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const touch = e.touches[0];
+    const xInChart = ((touch.clientX - rect.left) / rect.width) * WIDTH;
+    const i = Math.round((xInChart - PADDING) / stepX);
+    setHoverIndex(Math.max(0, Math.min(points.length - 1, i)));
+  };
+
   const formatValue = (v) => `₹${Math.round(v).toLocaleString("en-IN")}`;
   const hovered = hoverIndex !== null ? points[hoverIndex] : null;
 
@@ -52,11 +58,14 @@ export default function TrendChart({ title = "Savings trend", data = [] }) {
             preserveAspectRatio="none"
             className="trend-line"
             onMouseLeave={() => setHoverIndex(null)}
+            onTouchStart={handleTouch}
+            onTouchMove={handleTouch}
+            onTouchEnd={() => setHoverIndex(null)}
           >
             <defs>
               <linearGradient id="trendFill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#E8A33D" stopOpacity="0.28" />
-                <stop offset="100%" stopColor="#E8A33D" stopOpacity="0" />
+                <stop offset="0%" stopColor="#1B7F5F" stopOpacity="0.28" />
+                <stop offset="100%" stopColor="#1B7F5F" stopOpacity="0" />
               </linearGradient>
             </defs>
 
@@ -64,7 +73,7 @@ export default function TrendChart({ title = "Savings trend", data = [] }) {
             <path
               d={linePath}
               fill="none"
-              stroke="#E8A33D"
+              stroke="#1B7F5F"
               strokeWidth="2.5"
               strokeLinecap="round"
             />
@@ -75,7 +84,7 @@ export default function TrendChart({ title = "Savings trend", data = [] }) {
                 y1={0}
                 x2={hovered.x}
                 y2={HEIGHT}
-                stroke="#E8A33D"
+                stroke="#1B7F5F"
                 strokeWidth="1"
                 strokeOpacity="0.35"
                 strokeDasharray="3 3"
@@ -101,8 +110,8 @@ export default function TrendChart({ title = "Savings trend", data = [] }) {
                 cx={hovered.x}
                 cy={hovered.y}
                 r="3.5"
-                fill="#0F1418"
-                stroke="#E8A33D"
+                fill="#FFFFFF"
+                stroke="#1B7F5F"
                 strokeWidth="2"
                 vectorEffect="non-scaling-stroke"
               />
