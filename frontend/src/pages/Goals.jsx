@@ -141,8 +141,7 @@ export default function Goals() {
       goal.target_amount,
       goal.current_amount + amount,
     );
-    // Reaching the target auto-completes the goal; any progress from
-    // "not started" moves it to "in progress" - both feel obvious to the user.
+    
     let newStatus = goal.status;
     if (newAmount >= goal.target_amount) newStatus = "completed";
     else if (goal.status === "not_started") newStatus = "in_progress";
